@@ -5,12 +5,6 @@ import './style.css';
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.onChange(this.props.name, this.props.id);
   }
 
   render() {

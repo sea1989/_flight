@@ -54,6 +54,7 @@
     display: flex;
     width: 100%;
     padding: 10px;
+    justify-content: space-between;
 }
 
 .body-ticket__header::before {

@@ -1,28 +1,18 @@
 import React from 'react';
 
-import Form from '../form';
+import Form from '../Form';
 import Ticket from '../Ticket';
 
-import _data from '../flights.json';
+import _data from '../../data/flights.json';
 
 import './style.css';
 
-export default class TaskBoard extends React.Component {
+export default class Board extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-    };
-  }
-
-  componentDidMount() {
-    this.setState({
       data: _data.result.flights.slice(0, 13),
-    });
-  }
-
-  handleClick() {
-    this.props.onChange(this.props.name, this.props.id);
+    };
   }
 
   render() {

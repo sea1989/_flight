@@ -7,13 +7,8 @@ export default class Ticket extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      data2: this.props.flight.price.passengerPrices[0].singlePassengerTotal.amount,
+      data2: this.props.flight.legs[0].segments[0].departureCity.caption,
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
-    this.props.onChange(this.props.name, this.props.id);
   }
 
   render() {
@@ -24,7 +19,13 @@ export default class Ticket extends React.Component {
             <img src={AF} alt='Логотип компании' width='343' height='37' />
           </div>
           <div class='header-ticket__body'>
-            <div class='header-ticket__price'>{this.props.flight.price.passengerPrices[0].singlePassengerTotal.amount}₽</div>
+            <div class='header-ticket__price'>
+              {
+                this.props.flight.price.passengerPrices[0].singlePassengerTotal
+                  .amount
+              }
+              ₽
+            </div>
             <div class='header-ticket__text'>
               Стоимость для одного взрослого пассажира
             </div>
@@ -33,11 +34,15 @@ export default class Ticket extends React.Component {
         <div class='ticket__body body-ticket'>
           <div class='body-ticket__header'>
             <div class='body-ticket__left-header'>
-              Москва, ШЕРЕМЕТЬЕВО<span>(SVO)</span>
+              {this.props.flight.legs[0].segments[0].departureCity.caption.toUpperCase()}
+              , {this.props.flight.legs[0].segments[0].departureAirport.caption}
+              <span>(SVO)</span>
             </div>
             <div class='body-ticket__center-header'>→</div>
             <div class='body-ticket__right-header'>
-              ПАРИЖ, ПАРИЖ, ШАРЛЬ ДЕ ГОЛЛЬ<span>(CDG)</span>
+              {this.props.flight.legs[0].segments[1].arrivalCity.caption.toUpperCase()}
+              , {this.props.flight.legs[0].segments[1].arrivalAirport.caption}
+              <span>(CDG)</span>
             </div>
           </div>
           <div class='body-ticket__times'>
@@ -50,17 +55,23 @@ export default class Ticket extends React.Component {
             </div>
           </div>
           <div class='body-ticket__transfer'>1 пересадка</div>
-          <div class='body-ticket__footer'>Рейс выполняет: AF Air France</div>
+          <div class='body-ticket__footer'>
+            Рейс выполняет: {this.props.flight.carrier.caption}
+          </div>
         </div>
         <div class='ticket__line'> </div>
         <div class='ticket__body body-ticket'>
           <div class='body-ticket__header'>
             <div class='body-ticket__left-header'>
-              ЛОНДОН, Лондон, Хитроу<span>(LHR)</span>
+              {this.props.flight.legs[1].segments[0].departureCity.caption.toUpperCase()}
+              , Хитроу<span>(LHR)</span>
             </div>
             <div class='body-ticket__center-header'>→</div>
             <div class='body-ticket__right-header'>
-              ПАРИЖ, ПАРИЖ, ШАРЛЬ ДЕ ГОЛЛЬ<span>(CDG)</span>
+              {this.props.flight.legs[1].segments[1]
+                ? this.props.flight.legs[1].segments[1].arrivalCity.caption.toUpperCase()
+                : this.props.flight.legs[1].segments[0].arrivalCity.caption.toUpperCase()}
+              , ШАРЛЬ ДЕ ГОЛЛЬ<span>(CDG)</span>
             </div>
           </div>
           <div class='body-ticket__times'>
@@ -73,7 +84,9 @@ export default class Ticket extends React.Component {
             </div>
           </div>
           <div class='body-ticket__transfer'>1 пересадок</div>
-          <div class='body-ticket__footer'>Рейс выполняет: AF Air France</div>
+          <div class='body-ticket__footer'>
+            Рейс выполняет: {this.props.flight.carrier.caption}
+          </div>
         </div>
         <button class='ticket__btn'>ВЫБРАТЬ</button>
       </div>

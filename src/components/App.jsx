@@ -1,14 +1,10 @@
 import React from 'react';
 
 import './style.css';
-import TaskBoard from './Task-board';
+import Board from './Board';
 
 export default class App extends React.Component {
   render() {
-    return (
-      <React.Fragment>
-        <TaskBoard />
-      </React.Fragment>
-    );
+    return <Board />;
   }
 }
