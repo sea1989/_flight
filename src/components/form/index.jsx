@@ -3,7 +3,6 @@ import React from 'react';
 import './style.css';
 
 export default class Form extends React.Component {
-
   render() {
     return (
       <form class='header__form'>
@@ -12,7 +11,12 @@ export default class Form extends React.Component {
           <div class='header__input'>
             <label class='header__label'>
               - по возрастанию цены
-              <input type='radio' name='sort' value='maxPrice' />
+              <input
+                type='radio'
+                onChange={this.props.onChange}
+                name='sort'
+                value='maxPrice'
+              />
             </label>
             <label class='header__label'>
               - по убыванию цены

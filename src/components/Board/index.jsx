@@ -15,10 +15,22 @@ export default class Board extends React.Component {
     };
   }
 
+  getMinPriceTickets = () => {
+     this.setState({
+       data:       this.state.data.sort((a, b) => {return a.flight.price.passengerPrices[0].singlePassengerTotal.amount - b.flight.price.passengerPrices[0].singlePassengerTotal.amount
+      }),
+     });
+
+    console.log(
+      this.state.data.sort((a, b) => {return a.flight.price.passengerPrices[0].singlePassengerTotal.amount - b.flight.price.passengerPrices[0].singlePassengerTotal.amount
+      })
+    );
+  };
+
   render() {
     return (
       <section className='taskboard'>
-        <Form />
+        <Form onChange={this.getMinPriceTickets} />
         <div class='tickets__container'>
           <div class='tickets__list'>
             {this.state.data.map((item, index) => (
